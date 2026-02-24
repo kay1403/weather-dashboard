@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchWeather } from "./services/weatherService";
+import { getCurrentWeather } from "./services/weatherService";
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
@@ -13,7 +13,7 @@ function App() {
   const handleSearch = async (city) => {
     try {
       setError("");
-      const data = await fetchWeather(city);
+      const data = await getCurrentWeather(city);
       setWeather(data);
     } catch (err) {
       setWeather(null);

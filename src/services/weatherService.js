@@ -1,17 +1,15 @@
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+const BASE_URL = import.meta.env.VITE_WEATHER_BASE_URL;
 
-export const fetchWeather = async (city) => {
+export const getCurrentWeather = async (city) => {
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+      `${BASE_URL}/weather?q=${city}&units=metric&appid=${API_KEY}`
     );
-
-    if (!response.ok) {
-      throw new Error("City not found");
-    }
-
+    if (!response.ok) throw new Error('Weather data not found');
     return await response.json();
   } catch (error) {
-    throw new Error(error.message);
+    console.error(error);
+    throw error;
   }
 };
