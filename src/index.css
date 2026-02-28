@@ -1,7 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.card {
-  @apply bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-2xl p-4 text-center shadow;
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/20 dark:bg-white/10 backdrop-blur-xl border border-white/30 dark:border-white/20 shadow-xl;
+  }
+  
+  .weather-card {
+    @apply glass-card rounded-3xl p-8 transition-all duration-500 hover:shadow-2xl hover:scale-[1.02];
+  }
+  
+  .stat-card {
+    @apply glass-card rounded-2xl p-4 text-center transition-all duration-300 hover:scale-105;
+  }
+  
+  .btn-primary {
+    @apply px-8 py-3 rounded-full font-semibold transition-all duration-300 
+    bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700
+    text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-2 rounded-full font-medium transition-all duration-300
+    bg-black/80 hover:bg-black text-white backdrop-blur-sm
+    dark:bg-white/20 dark:hover:bg-white/30;
+  }
+  
+  .input-field {
+    @apply w-full p-4 rounded-2xl border-0 bg-white/80 dark:bg-gray-800/80 
+    backdrop-blur-sm focus:ring-2 focus:ring-blue-500 outline-none
+    text-gray-900 dark:text-white shadow-lg;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-500/50 rounded-full hover:bg-blue-600/70 transition-colors;
 }
